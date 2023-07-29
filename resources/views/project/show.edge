@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project</title>
+</head>
+<body>
+    
+    <h1>Projet</h1>
+
+    <a href={{ route('project.create') }}>Créer Utilisateur</a>
+
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Nom</td>
+                <td>Description</td>
+                <td>DeadLine</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+    </table>
+
+    <table>
+        <thead>
+            @each(projet in project)
+                <td>{{ projet.id }}</td>
+                <td>{{ projet.name }}</td>
+                <td>{{ projet.description }}</td>
+                <td>{{ projet.deadLine }}</td>
+                <td>
+                    <form action={{ route('project.show', project.id) }} method="post">
+                        @method('delete')
+                        <button>Delete</button>
+                    </form>
+                </td>
+            @endeach
+        </thead>
+    </table>
+
+</body>
+</html>
