@@ -12,7 +12,13 @@
 
     <a href={{ route('project.create') }}>Créer Utilisateur</a>
 
-    <table>
+    @if(flashMessages.has('success'))
+        <div class="success">
+            {{ flashMessages.get('success') }}
+        </div>
+    @endif
+    
+    <table class="mt-6">
         <thead>
             <tr>
                 <td>ID</td>
@@ -22,23 +28,28 @@
                 <td>Action</td>
             </tr>
         </thead>
-    </table>
-
-    <table>
-        <thead>
+        <tbody>
             @each(projet in project)
-                <td>{{ projet.id }}</td>
-                <td>{{ projet.name }}</td>
-                <td>{{ projet.description }}</td>
-                <td>{{ projet.deadLine }}</td>
-                <td>
-                    <form action={{ route('project.show', project.id) }} method="post">
-                        @method('delete')
-                        <button>Delete</button>
-                    </form>
-                </td>
+                <tr>
+                    <td>{{ projet.id }}</td>
+                    <td>{{ projet.name }}</td>
+                    <td>{{ projet.description }}</td>
+                    <td>{{ projet.deadLine }}</td>
+                    <td> 
+                        <form action="{{ route('project.delete', {id: projet.id}) }}?_method=DELETE" method="post">
+                            <button type="submit" class="button is-danger">
+                                Delete
+                            </button>
+                        </form>
+                        <form action="{{ route('project.update', {id: projet.id}) }}" method="post">
+                            <button type="submit">
+                                Edit
+                            </button>
+                        </form>
+                    </td>
+                </tr>
             @endeach
-        </thead>
+        </tbody>
     </table>
 
 </body>

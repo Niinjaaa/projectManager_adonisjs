@@ -29,6 +29,8 @@ Route.get('/users', 'UsersController.show').as('users.show')
 
 // Route projet 
 Route.get('/project', 'ProjectsController.show').as('project.show')
-Route.post('/project/store', 'ProjectsController.store').as('project.store')
 Route.get('/project/create', 'ProjectsController.create').as('project.create')
+Route.post('/project/store', 'ProjectsController.store').as('project.store')
 Route.get('/project/edit', 'ProjectsController.edit').as('project.edit')
+Route.put('project/update/:id', 'ProjectsController.update').as('project.update')
+Route.delete('project/delete/:id', 'ProjectsController.delete').as('project.delete')
