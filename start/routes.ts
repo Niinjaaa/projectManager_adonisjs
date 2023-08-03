@@ -47,3 +47,11 @@ Route.post('/tasks/store', 'TasksController.store').as('tasks.store')
 Route.get('/tasks/edit/:id', 'TasksController.edit').as('tasks.edit')
 Route.put('tasks/:id', 'TasksController.update').as('tasks.update')
 Route.delete('tasks/:id', 'TasksController.delete').as('tasks.delete')
+
+// Route teams
+Route.get('/teams', 'TeamsController.show').as('teams.show')
+Route.get('/teams/create', 'TeamsController.create').as('teams.create')
+Route.post('/teams/store', 'TeamsController.store').as('teams.store')
+Route.get('/teams/edit/:id', 'TeamsController.edit').as('teams.edit')
+Route.put('teams/:id', 'TeamsController.update').as('teams.update')
+Route.delete('teams/:id', 'TeamsController.delete').as('teams.delete')

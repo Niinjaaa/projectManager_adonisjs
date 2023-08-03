@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Teams</title>
+</head>
+<body>
+    <h1>Teams</h1>
+
+    <a href={{ route('teams.create') }}>Créer une team</a>
+
+    @if(flashMessages.has('success'))
+        <div class="success">
+            {{ flashMessages.get('success') }}
+        </div>
+    @endif
+    
+    <table class="mt-6">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Nom</td>
+                <td>Project_id</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            @each(team in teams)
+                <tr>
+                    <td>{{ team.id }}</td>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.project_id }}</td>
+                    <td> 
+                        <form action="{{ route('teams.delete', {id: team.id}) }}?_method=DELETE" method="post">
+                            <button type="submit" class="button is-danger">
+                                Delete
+                            </button>
+                        </form>
+                        <form action="{{ route('teams.edit', {id: team.id}) }}" method="get">
+                            <button type="submit">
+                                Edit
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            @endeach
+        </tbody>
+    </table>
+
+</body>
+</html>
