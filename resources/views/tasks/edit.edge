@@ -7,17 +7,17 @@
     <title>Tasks</title>
 </head>
 <body>
-    <h1>Création Tache</h1>
+    <h1>Update Tasks</h1>
 
-    <form action={{ route('tasks.store') }} method="post">
+    <form action="{{ route('tasks.update', {id: tasks.id}) }}?_method=PUT" method="post">
         <label for="name">Nom</label>
-        <input type="text" name="name">
+        <input type="text" value="{{ tasks.name }}" name="name">
 
         <label for="description">Description</label>
-        <input type="text" name="description">
+        <input type="text" value="{{ tasks.description }}" name="description">
 
         <label for="project_id">project_id</label>
-        <input type="text" name="project_id">
+        <input type="text" value="{{ tasks.project_id }}" name="project_id">
 
         <button type="submit">Enregistrer</button>
     </form>

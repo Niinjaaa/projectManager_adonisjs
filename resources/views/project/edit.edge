@@ -9,15 +9,15 @@
 <body>
     <h1>Update Project</h1>
 
-    <form action={{ route('project.update') }} method="post">
+    <form action="{{ route('project.update', {id: project.id}) }}?_method=PUT" method="post">
         <label for="name">Nom</label>
-        <input type="text" name="name">
+        <input type="text" value="{{ project.name }}" name="name">
 
         <label for="description">Description</label>
-        <input type="text" name="description">
+        <input type="text" value="{{ project.description }}" name="description">
 
         <label for="deadLine">DeadLine</label>
-        <input type="date" name="deadLine">
+        <input type="date" value="{{ project.deadLine }}" name="deadLine">
 
         <button type="submit">Enregistrer</button>
     </form>

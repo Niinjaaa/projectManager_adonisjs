@@ -10,7 +10,7 @@
     
     <h1>Projet</h1>
 
-    <a href={{ route('project.create') }}>Créer Utilisateur</a>
+    <a href={{ route('project.create') }}>Créer un Projet</a>
 
     @if(flashMessages.has('success'))
         <div class="success">
@@ -41,7 +41,7 @@
                                 Delete
                             </button>
                         </form>
-                        <form action="{{ route('project.update', {id: projet.id}) }}" method="post">
+                        <form action="{{ route('project.edit', {id: projet.id}) }}" method="get">
                             <button type="submit">
                                 Edit
                             </button>

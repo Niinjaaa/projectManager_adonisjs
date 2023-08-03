@@ -30,17 +30,24 @@ export default class ProjectsController {
 
     public async edit({ view, params }: HttpContextContract)
     {
-        return view.render('project/edit')
+        let project = await Project.find(params.id)
+
+        return view.render('project/edit', {
+            project
+        })
     }
 
-    public async update({ response, request, params, session }: HttpContextContract)
+    public async update({ request, params, session, response }: HttpContextContract)
     {
         let project = await Project.findOrFail(params.id)
         project.name = request.input('name')
         project.description = request.input('description')
         project.deadLine = request.input('deadLine')
 
+        session.flash({succes: 'Le projet à été modifié'})
         project.save()
+
+        return response.redirect().toRoute('project.show')
 
         /*const project = await Project.findOrFail(params.id)
         project.merge(request.all()).save()
@@ -53,8 +60,8 @@ export default class ProjectsController {
     {
         const projet = await Project.find(params.id)
         projet?.delete() 
-
+        
         session.flash({success: 'Le projet à été supprimé'})
-        return response.send('Projet supprimé')
+        return response.redirect().toRoute('project.show')
     }
 }
